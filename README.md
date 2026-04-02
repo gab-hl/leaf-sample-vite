@@ -10,7 +10,7 @@ This project uses the [Leaf Design System](https://www.npmjs.com/package/@herbal
 
 The sample uses a fixed left navigation rail with routed content in the main column. The rail width is defined once as a CSS custom property in `src/index.css`:
 
-- **`--app-nav-width`** — default `16rem`; consumed by `src/layouts/AppShellLayout.jsx` for the sidebar width (`w-[var(--app-nav-width)]`) and main offset (`ml-[var(--app-nav-width)]`). Adjust only `:root { --app-nav-width: … }` if you want a wider or narrower nav without hunting for hard-coded `16rem` / `w-64` values.
+- **`--app-nav-width`** — default `16rem`; wired through plain CSS classes **`app-shell-aside`** and **`app-shell-main`** in `src/index.css` (fixed rail width + `margin-left` on `main`). That avoids overlap when global styles override layered Tailwind utilities. Change only `:root { --app-nav-width: … }` to resize the nav in one place.
 
 Currently, two official plugins are available:
 

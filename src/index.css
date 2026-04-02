@@ -9,4 +9,27 @@
  */
 :root {
   --app-nav-width: 16rem;
+  /* Layout: space from section heading to content below (not provided in Leaf tokens). */
+  --lf-gap-elements: var(--lf-spacing-8);
+}
+
+/*
+ * Unlayered layout hooks — wins over @layer utilities so the fixed rail never covers route content.
+ * (Some global/theme styles reset `main`; Tailwind `lf:ml-[…]` can be overridden.)
+ */
+.app-shell-aside {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  width: var(--app-nav-width);
+  box-sizing: border-box;
+}
+
+.app-shell-main {
+  margin-left: var(--app-nav-width);
+  min-height: 100vh;
+  min-width: 0;
+  box-sizing: border-box;
 }

@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 import {
   Button,
   OutlinedButton,
   Text,
-  InputText,
+  Shortcut,
   SimpleCard,
   Tag,
 } from '@herbalifedev/leaf'
@@ -36,75 +37,74 @@ const FOUNDATION_CARDS = [
   { title: 'Shadows', count: 3, label: 'Variables' },
 ]
 
+const WHATS_INSIDE_TARGETS = {
+  Foundations: 'section-foundations',
+  Components: 'section-components',
+}
+
 function Home() {
+  const navigate = useNavigate()
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const handleWhatsInsideClick = (item) => {
+    const id = WHATS_INSIDE_TARGETS[item]
+    if (id) scrollToSection(id)
+    else navigate('/product')
+  }
+
   return (
-    <div className="lf:mx-auto lf:w-full lf:max-w-7xl lf:box-border lf:px-8 lf:py-12 lf:md:px-12 lf:md:py-16">
-      <section className="lf:flex lf:flex-col lf:lg:flex-row lf:items-start lf:justify-between lf:gap-12 lf:mb-24">
-        <div className="lf:flex-1 lf:max-w-2xl">
+    <div className="max-w-(--lf-container-7xl) mx-auto bg-(--lf-bg-1) w-full box-border px-8 py-12 md:px-12 flex flex-col gap-(--lf-section-gap) md:py-16">
+      <section className="flex flex-col lg:flex-row lg:items-start lg:justify-between border border-(--lf-border-muted) lf:rounded-(--lf-shape-card) shadow-(--lf-shadow-xl) p-(--lf-spacing-6) md:p-(--lf-spacing-12)">
+        <div className="flex flex-col gap-(--lf-gap-elements) max-w-(--lf-max-w-ml)">
           <Text
             type="heading"
             size="xlarge"
-            className="lf:text-(--lf-heading-color) lf:mb-4"
+            className="lf:text-(--lf-heading-color)"
           >
             Leaf Design System
           </Text>
-          <Text
-            type="paragraph"
-            size="medium"
-            className="lf:text-(--lf-description-color) lf:mb-8"
-          >
-            Here you can find our design guidelines, component documentation,
-            and resources for building apps with Herbalife.
-          </Text>
-          <div className="lf:flex lf:gap-4">
-            <Button>Getting Started</Button>
-            <OutlinedButton>Explore</OutlinedButton>
-          </div>
-        </div>
-        <div className="lf:w-full lf:lg:w-80 lf:shrink-0 lf:bg-(--lf-bg-selected) lf:rounded-(--lf-shape-card) lf:p-6 lf:border lf:border-(--lf-border-muted)">
-          <div className="lf:flex lf:flex-col lf:gap-4">
-            <div className="lf:flex lf:gap-4 lf:items-center" />
-
-            <InputText label="Label" content="" onChange={() => {}} />
-            <InputText
-              label="Placeholder"
-              content=""
-              placeholder="Enter text"
-              onChange={() => {}}
-            />
-            <div className="lf:grid lf:grid-cols-2 lf:gap-2">
-              <div className="lf:h-12 lf:rounded-lg lf:bg-(--lf-primary-lighter)" />
-              <div className="lf:h-12 lf:rounded-lg lf:bg-(--lf-bg-2)" />
-              <div className="lf:h-12 lf:rounded-lg lf:bg-(--lf-bg-2)" />
-              <div className="lf:h-12 lf:rounded-lg lf:bg-(--lf-primary-lighter)" />
+          <div className="flex flex-col gap-(--lf-spacing-6)">
+            <Text
+              type="paragraph"
+              size="medium"
+              className="lf:text-(--lf-description-color)"
+            >
+              Here you can find our design guidelines, component documentation,
+              and resources for building apps with Herbalife.
+            </Text>
+            <div className="flex gap-(--lf-spacing-4)">
+              <Button>Getting Started</Button>
+              <OutlinedButton>Explore</OutlinedButton>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="lf:mb-24">
+      <section id="section-whats-inside" className="flex flex-col gap-(--lf-gap-elements)">
         <Text
           type="heading"
           size="large"
-          className="lf:text-(--lf-heading-color) lf:mb-8"
+          className="lf:text-(--lf-heading-color)"
         >
           What&apos;s Inside
         </Text>
-        <div className="lf:grid lf:grid-cols-2 lf:md:grid-cols-3 lf:lg:grid-cols-5 lf:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-(--lf-spacing-4)">
           {WHATS_INSIDE_ITEMS.map((item) => (
-            <SimpleCard
+            <Shortcut
               key={item}
-              title={item}
-              icon="arrow_upward_alt"
-              appearance="container"
-              alignCenter
+              Title={item}
+              IconName="arrow_upward_alt"
+              onClick={() => handleWhatsInsideClick(item)}
             />
           ))}
         </div>
       </section>
 
-      <section className="lf:mb-24">
-        <div className="lf:flex lf:flex-col lf:md:flex-row lf:md:items-center lf:md:justify-between lf:gap-4 lf:mb-8">
+      <section id="section-components" className="flex flex-col gap-(--lf-gap-elements)">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-(--lf-spacing-4)">
           <Text
             type="heading"
             size="large"
@@ -112,16 +112,16 @@ function Home() {
           >
             Components
           </Text>
-          <div className="lf:flex lf:gap-3">
+          <div className="flex gap-(--lf-spacing-4)">
             <OutlinedButton size="small">Open in Storybook</OutlinedButton>
             <OutlinedButton size="small">Open in Figma</OutlinedButton>
           </div>
         </div>
-        <div className="lf:grid lf:grid-cols-2 lf:lg:grid-cols-3 lf:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-(--lf-spacing-6)">
           {COMPONENT_CARDS.map((card) => (
-            <div key={card.title} className="lf:relative">
+            <div key={card.title} className="relative">
               {card.new && (
-                <div className="lf:absolute lf:top-3 lf:right-3 lf:z-10">
+                <div className="absolute top-(--lf-spacing-4) right-(--lf-spacing-4) z-10">
                   <Tag label="New" severity="primary" />
                 </div>
               )}
@@ -130,14 +130,16 @@ function Home() {
                 description={`${card.count} Components`}
                 icon="grid_view"
                 appearance="bordered"
+                clickable
+                onClick={() => navigate('/product')}
               />
             </div>
           ))}
         </div>
       </section>
 
-      <section>
-        <div className="lf:flex lf:flex-col lf:md:flex-row lf:md:items-center lf:md:justify-between lf:gap-4 lf:mb-8">
+      <section id="section-foundations" className="flex flex-col gap-(--lf-gap-elements)">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-(--lf-spacing-4)">
           <Text
             type="heading"
             size="large"
@@ -145,12 +147,12 @@ function Home() {
           >
             Foundations
           </Text>
-          <div className="lf:flex lf:gap-3">
+          <div className="flex gap-(--lf-spacing-4)">
             <OutlinedButton size="small">Open in Storybook</OutlinedButton>
             <OutlinedButton size="small">Open in Figma</OutlinedButton>
           </div>
         </div>
-        <div className="lf:grid lf:grid-cols-2 lf:lg:grid-cols-3 lf:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-(--lf-spacing-6)">
           {FOUNDATION_CARDS.map((card) => (
             <SimpleCard
               key={card.title}
@@ -158,6 +160,8 @@ function Home() {
               description={`${card.count} ${card.label}`}
               icon="tri_leaf"
               appearance="bordered"
+              clickable
+              onClick={() => navigate('/product')}
             />
           ))}
         </div>

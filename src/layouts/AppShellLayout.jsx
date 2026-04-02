@@ -22,7 +22,7 @@ function AppShellLayout() {
     <div className="lf:relative lf:min-h-screen lf:bg-(--lf-bg-1)">
       <aside
         aria-label="Main navigation"
-        className="lf:fixed lf:inset-y-0 lf:left-0 lf:z-30 lf:flex lf:h-screen lf:w-[var(--app-nav-width)] lf:shrink-0 lf:flex-col lf:overflow-y-auto lf:border-r lf:border-(--lf-border-muted) lf:bg-(--lf-bg-1)"
+        className="app-shell-aside lf:flex lf:h-screen lf:shrink-0 lf:flex-col lf:overflow-y-auto lf:border-r lf:border-(--lf-border-muted) lf:bg-(--lf-bg-1)"
       >
         <div className="lf:p-6 lf:pb-4" />
         <nav className="lf:flex-1 lf:flex lf:flex-col lf:px-4 lf:pb-2">
@@ -52,7 +52,7 @@ function AppShellLayout() {
         </div>
       </aside>
 
-      <main className="lf:ml-[var(--app-nav-width)] lf:min-h-screen lf:min-w-0 lf:overflow-x-auto lf:bg-(--lf-bg-2)">
+      <main className="app-shell-main lf:overflow-x-auto lf:bg-(--lf-bg-2)">
         <Outlet />
       </main>
     </div>
