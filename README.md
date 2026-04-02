@@ -6,6 +6,19 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 This project uses the [Leaf Design System](https://www.npmjs.com/package/@herbalifedev/leaf) (`@herbalifedev/leaf`). See [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) for guidelines on applying the design system.
 
+## GitHub Pages (site deploy)
+
+Live site: **[https://gab-hl.github.io/leaf-sample-vite/](https://gab-hl.github.io/leaf-sample-vite/)**
+
+Publishing is tied to the **[gab-hl/leaf-sample-vite](https://github.com/gab-hl/leaf-sample-vite)** repo on the **gab-hl** GitHub account:
+
+1. In the repo, **Settings → Pages**: source **Deploy from a branch**, branch **`main`**, folder **`/docs`**.
+2. After you change **`src/`** (or anything the app imports), ship an updated static bundle:
+   - Set **`NPM_TOKEN`** in your shell if needed for `@herbalifedev/leaf` (see [`.npmrc`](.npmrc)).
+   - Run **`npm run build:pages`** (runs `vite build` and copies **`dist/`** into **`docs/`**, keeping **`docs/DESIGN_SYSTEM.md`**).
+   - Commit the changed files under **`docs/`** and **`git push origin main`**.
+3. Only pushes you make with permission on **gab-hl** (or a collaborator with deploy rights) update what GitHub Pages serves; the site does **not** auto-rebuild from `src/` alone.
+
 ## App shell layout
 
 The sample uses a fixed left navigation rail with routed content in the main column. The rail width is defined once as a CSS custom property in `src/index.css`:
