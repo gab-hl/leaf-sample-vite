@@ -1,2 +1,12 @@
 @import '@herbalifedev/leaf/tokens/styles.css'; 
 @import "tailwindcss";
+
+/*
+ * App shell — sidebar width (single source of truth).
+ * Used in AppShellLayout: fixed aside width + main margin-left so route content stays to the right
+ * without overlapping the nav. Change this value to resize the rail; keep layout classes in sync
+ * via var(--app-nav-width).
+ */
+:root {
+  --app-nav-width: 16rem;
+}

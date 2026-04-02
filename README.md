@@ -6,6 +6,12 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 This project uses the [Leaf Design System](https://www.npmjs.com/package/@herbalifedev/leaf) (`@herbalifedev/leaf`). See [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) for guidelines on applying the design system.
 
+## App shell layout
+
+The sample uses a fixed left navigation rail with routed content in the main column. The rail width is defined once as a CSS custom property in `src/index.css`:
+
+- **`--app-nav-width`** — default `16rem`; consumed by `src/layouts/AppShellLayout.jsx` for the sidebar width (`w-[var(--app-nav-width)]`) and main offset (`ml-[var(--app-nav-width)]`). Adjust only `:root { --app-nav-width: … }` if you want a wider or narrower nav without hunting for hard-coded `16rem` / `w-64` values.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
