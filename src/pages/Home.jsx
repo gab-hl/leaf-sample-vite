@@ -56,7 +56,7 @@ function Home() {
   }
 
   return (
-    <div className="max-w-(--lf-container-7xl) mx-auto bg-(--lf-bg-1) w-full box-border px-8 py-12 md:px-12 flex flex-col gap-(--lf-section-gap) md:py-16">
+    <div className="max-w-(--lf-container-7xl) mx-auto bg-(--lf-bg-1) rounded-(--lf-shape-card) w-full box-border px-8 py-12 md:px-12 flex flex-col gap-(--lf-section-gap) md:py-16">
       <section className="flex flex-col lg:flex-row lg:items-start lg:justify-between border border-(--lf-border-muted) lf:rounded-(--lf-shape-card) shadow-(--lf-shadow-xl) p-(--lf-spacing-6) md:p-(--lf-spacing-12)">
         <div className="flex flex-col gap-(--lf-gap-elements) max-w-(--lf-max-w-ml)">
           <Text
