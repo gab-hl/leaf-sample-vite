@@ -17,12 +17,15 @@ if (!existsSync(dist)) {
 }
 
 rmSync(join(docs, 'assets'), { recursive: true, force: true })
-for (const file of ['index.html', 'vite.svg']) {
+for (const file of ['index.html', '404.html', 'vite.svg']) {
   rmSync(join(docs, file), { force: true })
 }
 
 cpSync(join(dist, 'assets'), join(docs, 'assets'), { recursive: true })
 cpSync(join(dist, 'index.html'), join(docs, 'index.html'))
+// GitHub Pages has no SPA fallback: deep links must serve the app shell. Duplicate entry HTML
+// so unknown paths return this file and React Router can read the real pathname.
+cpSync(join(dist, 'index.html'), join(docs, '404.html'))
 cpSync(join(dist, 'vite.svg'), join(docs, 'vite.svg'))
 
-console.log('Synced dist/ → docs/ (DESIGN_SYSTEM.md and other .md files untouched).')
+console.log('Synced dist/ → docs/ (404.html = SPA fallback; other .md in docs/ untouched).')
