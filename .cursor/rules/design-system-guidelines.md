@@ -8,7 +8,7 @@ Leaf is Herbalife's design system. It provides:
 
 - **Components** – Button, Text, InputText, SimpleCard, Brand, and more
 - **Design tokens** – CSS variables for colors, typography, spacing, and shapes
-- **Styling conventions** – `lf:`-prefixed Tailwind classes
+- **Styling conventions** – Tailwind utilities with Leaf design tokens as arbitrary values (no `lf:` prefix required)
 
 ## Typography
 
@@ -20,22 +20,22 @@ Do **not** use raw HTML elements (`<h1>`, `<h2>`, `<p>`, `<span>`) for styled te
 import { Text } from '@herbalifedev/leaf'
 
 // Page title
-<Text type="heading" size="xlarge" className="lf:text-(--lf-heading-color) lf:mb-4">
+<Text type="heading" size="xlarge" className="text-(--lf-heading-color) mb-4">
   Leaf Design System
 </Text>
 
 // Section heading
-<Text type="heading" size="large" className="lf:text-(--lf-heading-color) lf:mb-8">
+<Text type="heading" size="large" className="text-(--lf-heading-color) mb-8">
   What's Inside
 </Text>
 
 // Body/description text
-<Text type="paragraph" size="medium" className="lf:text-(--lf-description-color)">
+<Text type="paragraph" size="medium" className="text-(--lf-description-color)">
   Here you can find our design guidelines and resources.
 </Text>
 
 // Form/card heading
-<Text type="heading" size="medium" className="lf:text-(--lf-heading-color)">
+<Text type="heading" size="medium" className="text-(--lf-heading-color)">
   Login with my credentials
 </Text>
 ```
@@ -92,7 +92,7 @@ Use standard Tailwind utilities for layout and spacing. Design tokens are applie
 
 ```jsx
 <div className="p-(--lf-spacing-4) h-screen w-full flex items-end">
-  <div className="flex flex-col gap-(--lf-spacing-6) md:gap-(--lf-spacing-10) lf:bg-(--lf-bg-1) border border-(--lf-border-muted) rounded-(--lf-shape-card) shadow-(--lf-shadow-xl) p-(--lf-spacing-6) md:p-(--lf-spacing-12)">
+  <div className="flex flex-col gap-(--lf-spacing-6) md:gap-(--lf-spacing-10) bg-(--lf-bg-1) border border-(--lf-border-muted) rounded-(--lf-shape-card) shadow-(--lf-shadow-xl) p-(--lf-spacing-6) md:p-(--lf-spacing-12)">
     <Text type="heading" size="medium" className="max-w-(--lf-container-sm)">
       Login with my credentials
     </Text>
@@ -102,10 +102,10 @@ Use standard Tailwind utilities for layout and spacing. Design tokens are applie
 
 ### Class prefix
 
-Leaf-specific styling (colors, backgrounds) uses the `lf:` prefix. Layout utilities (`flex`, `grid`, `gap`, `p`) can use tokens directly without `lf:`:
+In this project, Leaf’s Tailwind preset applies without a separate `lf:` variant. Use normal utility names (`bg-`, `text-`, `rounded-`, etc.) with `(--lf-…)` token values—the same pattern as spacing and layout.
 
 ```jsx
-<div className="flex flex-col gap-(--lf-spacing-6) lf:bg-(--lf-bg-1) lf:rounded-(--lf-shape-card)">
+<div className="flex flex-col gap-(--lf-spacing-6) bg-(--lf-bg-1) rounded-(--lf-shape-card)">
 ```
 
 ### Design tokens
@@ -122,4 +122,6 @@ Use CSS variables instead of hardcoded values when available:
 
 ## Cursor rules
 
-Design system rules are stored in `.cursor/rules/leaf-design-system.mdc` and apply automatically when working with `.jsx`, `.tsx`, `.js`, and `.ts` files. The AI assistant will follow these conventions when suggesting or generating code.
+**This file is the source of truth** for design-system conventions in this repo.
+
+`.cursor/rules/leaf-design-system.mdc` applies to `.jsx`, `.tsx`, `.js`, and `.ts` files and only points here so guidelines stay in one place. Contributors and the AI assistant should follow `docs/DESIGN_SYSTEM.md` when suggesting or generating code.

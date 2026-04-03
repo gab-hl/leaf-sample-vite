@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import {
   Button,
-  Header,
   InputCreditCard,
   InputCheckbox,
   ListSelect,
@@ -12,14 +11,7 @@ import {
   ListNavigation,
   ListContent,
 } from '@herbalifedev/leaf'
-
-const NAV_ITEMS = [
-  'Achieve your Goals',
-  'Products',
-  'Wellness Resources',
-  'Business Opportunity',
-  'About Herbalife',
-]
+import PageHeading from '../components/PageHeading.jsx'
 
 const PRIMARY_PAYMENT_METHODS = [
   { title: 'Visa 31x4', description: 'Primary card on file', badgeFlag: 'visa' },
@@ -42,22 +34,14 @@ function Checkout() {
   const [selectedOtherPayment, setSelectedOtherPayment] = useState('')
 
   return (
-    <div className="min-h-screen bg-(--lf-bg-2)">
-      <Header >
-        {NAV_ITEMS.map((item) => (
-          <Header.NavContent key={item} title={item} href="#" />
-        ))}
-      </Header>
-
+    <div className="flex min-h-full flex-1 flex-col bg-(--lf-bg-2)">
       <main className="w-(--lf-max-w-2xl) mx-auto p-(--lf-spacing-6) md:p-(--lf-spacing-12)">
         <div className="flex flex-col lg:flex-row gap-(--lf-spacing-10)">
           <section className="flex-1 max-w-(--lf-container-sm) flex flex-col gap-(--lf-spacing-10)">
-            <Text type="heading" size="large" className="text-(--lf-heading-color)">
-              Checkout
-            </Text>
+            <PageHeading title="Checkout" description="Shipping, payment, and order summary for this sample flow." />
 
             <div className="flex flex-col gap-(--lf-spacing-6)">
-              <Text type="heading" size="small" className="text-(--lf-heading-color)">
+              <Text type="heading" size="small">
                 Welcome
               </Text>
               <div className="bg-(--lf-bg-1) border border-(--lf-border-muted) rounded-(--lf-shape-card) p-(--lf-spacing-6) flex flex-col gap-(--lf-spacing-4)">
@@ -75,7 +59,7 @@ function Checkout() {
             </div>
 
             <div className="flex flex-col gap-(--lf-spacing-6)">
-              <Text type="heading" size="small" className="text-(--lf-heading-color)">
+              <Text type="heading" size="small">
                 Shipping address
               </Text>
               <div className="flex flex-col gap-(--lf-spacing-6)">
@@ -109,7 +93,7 @@ function Checkout() {
             </div>
 
             <div className="flex flex-col gap-(--lf-spacing-6)">
-              <Text type="heading" size="small" className="text-(--lf-heading-color)">
+              <Text type="heading" size="small">
                 Payment
               </Text>
 
@@ -127,7 +111,7 @@ function Checkout() {
                 }}
               />
 
-              <Text type="paragraph" size="small" className="text-(--lf-paragraph-color)">Add a new Credit Card</Text>
+              <Text type="paragraph" size="small">Add a new Credit Card</Text>
               <InputCreditCard label="Credit Card Number" number="9999 9999 9999 9999" onChange={() => {}} />
               <InputText label="Cardholder Name" content="Ashley Ramsden" onChange={() => {}} />
 
@@ -140,7 +124,7 @@ function Checkout() {
               <InputCheckbox label="Billing address same as shipping" selected onChange={() => {}} />
 
               <div className="flex flex-col gap-(--lf-spacing-4)">
-                <Text type="paragraph" size="small" className="text-(--lf-description-color)">
+                <Text type="paragraph" size="small">
                   Choose your payment method from the options below.
                 </Text>
                 {PRIMARY_PAYMENT_METHODS.map((method) => (
@@ -161,7 +145,7 @@ function Checkout() {
               </div>
 
               <div className="flex flex-col gap-(--lf-spacing-4)">
-                <Text type="paragraph" size="small" className="text-(--lf-description-color)">
+                <Text type="paragraph" size="small">
                   Other payment methods
                 </Text>
                 {OTHER_PAYMENT_METHODS.map((method) => (
@@ -185,7 +169,7 @@ function Checkout() {
 
           <aside className="w-full lg:w-[448px]">
             <div className="lg:sticky top-6 bg-(--lf-bg-1) border border-(--lf-border-muted) rounded-(--lf-shape-card) shadow-(--lf-shadow-xl) p-(--lf-spacing-6) md:p-(--lf-spacing-10) flex flex-col gap-(--lf-spacing-6)">
-              <Text type="heading" size="small" className="text-(--lf-heading-color)">
+              <Text type="heading" size="small">
                 Summary
               </Text>
 
